@@ -9,22 +9,27 @@ function VFI(param::model,pzg)
     # setup matrices:
     Vnew = zeros(na,nz,nz,nk)
     apol = zeros(na,nz,nz,nk)
+    iter = 0
+    diff = 9999
     # iterate until convergence:
     for it in 1:maxit
+        iter = iter + 1
         # update V using utility function and the transition probabilities
         Vnew,apol = V_Update(param,pzg,Vg)
         # compute diff:
         diff = maximum(abs.(Vnew - Vg))
         # print iteration and diff:
-        # println("Iteration: ",it," Diff: ",diff)
+        println("Iteration: ",it," Diff: ",diff)
         # check convergence:
         if diff < tol
-            println("Value Function Converged, Iteration: ",it)
+            # println("Value Function Converged, Iteration: ",it)
             break
         end
         # update guess:
         Vg = Vnew
     end
+    # print iterations, diff:
+    println(" -- VFI done, Iteration: ",iter, " Diff: ", diff)
     return Vnew,apol
 end
 
