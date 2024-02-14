@@ -19,7 +19,7 @@ function VFI(param::model,pzg)
         # compute diff:
         diff = maximum(abs.(Vnew - Vg))
         # print iteration and diff:
-        println("Iteration: ",it," Diff: ",diff)
+        # println("Iteration: ",it," Diff: ",diff)
         # check convergence:
         if diff < tol
             # println("Value Function Converged, Iteration: ",it)

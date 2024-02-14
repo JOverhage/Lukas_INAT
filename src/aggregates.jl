@@ -49,6 +49,7 @@ function p_finder(param::model,pgup,pgdown,zseries)
     # Intuition as usual High price => Low demand, low price => high demand, check if Dup < 1 < Ddown, if not print error:
     if (mean(ADup) < 1) || (mean(ADdown) > 1)
         println("Initial Bisection Boundaries not set correctly, ADup: ",mean(ADup)," ADdown: ",mean(ADdown))
+        return pgup
     end
     # initialize loop midpoints:
     pmid = 0
@@ -59,7 +60,7 @@ function p_finder(param::model,pgup,pgdown,zseries)
         # compute midpoint:
         pmid = (pgup + pgdown)./2
         # simulate, and compute asset demand for pmid:
-        jdmid,apmid,ADmid = simulate(param,pmid,zT)
+        jdmid,apmid,ADmid = simulate(param,pmid,zseries)
         # check if we are close enough:
         if sum(abs(ADmid[zT .== 1] - 1) + abs(ADmid[zT .== 2] - 1)) < tol_bis
             return pmid
