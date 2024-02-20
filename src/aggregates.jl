@@ -82,6 +82,7 @@ function p_finder(param::model,pgup,pgdown,zseries)
     return pmid
 end
 
+
 # simulation fct:
 function simulate(param::model,pvec,zseries)
     @unpack_model param
