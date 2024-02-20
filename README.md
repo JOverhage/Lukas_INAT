@@ -1,5 +1,5 @@
 # Lukas_INAT
-Lukas '78 asset pricing model with inattention
+Project to learn about how the Lukas '78 model behaves if inattention is added
 
 # Starting point:
 Unclear if this sort of model conforms to aggregate linearity, approximate aggregation etc.
